@@ -11,7 +11,7 @@ const {
 } = require('../../controllers/thoughtsController');
 
 // /api/thoughts
-router.route('/').get(getAllThoughts).post(createThought);
+router.route('/').get(getAllThoughts).post(createThought).delete(deleteThought).put(addReaction).delete(removeReaction);
 
 router
   .route('/:id')
