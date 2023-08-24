@@ -1,6 +1,6 @@
 const {Schema, model} = require('mongoose');
 
-const ReactionSchema = new Schema(
+const reactionSchema = new Schema(
   {
     // set custom id to avoid confusion with parent thought _id
     reactionId: {
@@ -30,6 +30,6 @@ const ReactionSchema = new Schema(
   }
 );
 
-const Reaction = model('Reaction', ReactionSchema);
+const Reaction = model('Reaction', reactionSchema);
 
-module.exports = Reaction;
+module.exports = reactionSchema;
