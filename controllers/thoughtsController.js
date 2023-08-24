@@ -1,33 +1,32 @@
 const thoughts = require('../models/thoughts');
 
 module.exports = {
-    // get all thoughts
-    getAllThoughts: async (req, res) => {
-      try {
-        const thoughts = await thoughts.find().populate('reactions');
-        res.json(thoughts);
-      } catch (err) {
-        console.log(err);
-        res.sendStatus(400);
-      }
+  // get all thoughts
+  getAllThoughts: async (req, res) => {
+    try {
+      const thoughts = await thoughts.find().populate('reactions');
+      res.json(thoughts);
+    } catch (err) {
+      console.log(err);
+      res.sendStatus(400);
     }
-    // get one thought by id
-    getThoughtById: async ({ params }, res) => {
-      try {
-        // populate thought and friend data
-        const thought = await thoughts.findOne({ _id: params.id }).populate('reactions');
-        if (!thought) {
-          // if no thought is found, send 404
-          res.status(404).json({ message: 'No thought found with this id!' });
-          return res.status(404).json({ message: 'No thought found with this id!' })  ;
-        }
-        // if thought is found, send json response
-        res.json(thought);
-        // error catch
-      } catch (err) {
-        console.log(err);
-        res.sendStatus(400);
+  },
+  // get one thought by id
+  getThoughtById: async ({ params }, res) => {
+    try {
+      // populate thought and friend data
+      const thought = await thoughts.findOne({ _id: params.id }).populate('reactions');
+      if (!thought) {
+        // if no thought is found, send 404
+        res.status(404).json({ message: 'No thought found with this id!' });
+        return res.status(404).json({ message: 'No thought found with this id!' })  ;
       }
+      // if thought is found, send json response
+      res.json(thought);
+      // error catch
+    } catch (err) {
+      console.log(err);
+      res.sendStatus(400);
     }
   },
   // export the controller
@@ -40,7 +39,7 @@ module.exports = {
       console.log(err);
       res.sendStatus(400);
     }
-  }
+  },
   // delete thought
   deleteThought: async ({ params }, res) => {
     try {
@@ -54,7 +53,7 @@ module.exports = {
       console.log(err);
       res.sendStatus(400);
     }
-  }
+  },
   // add reaction
   addReaction: async ({ params, body }, res) => {
     try {
@@ -72,7 +71,7 @@ module.exports = {
       console.log(err);
       res.sendStatus(400);
     }
-  }
+  },
   // delete reaction
   deleteReaction: async ({ params }, res) => {
     try {
@@ -90,9 +89,8 @@ module.exports = {
       console.log(err);
       res.sendStatus(400);
     }
-  }
+  },
 };
-
 
 
 // export the controller
